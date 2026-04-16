@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ApiException;
+use App\Models\User;
 use App\Utils\Helpers;
 use Exception;
 use Illuminate\Http\Request;
@@ -55,5 +56,18 @@ abstract class Controller
                 $exception
             );
         }
+    }
+
+
+    /**
+     * Recuperar o usuário autenticado
+     *
+     * @return User|null O model do usuário ou `null` se não houver nenhum usuário autenticado
+     */
+    protected function getAuthenticatedUser(): User|null
+    {
+        return $this
+            ->request
+            ->user();
     }
 }

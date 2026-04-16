@@ -4,6 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
+use App\Models\User;
 
 class RegisterRequest extends FormRequest
 {
@@ -35,6 +36,7 @@ class RegisterRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userTable = (new User())->getTable();
 
         return [
             'name' => [
@@ -45,7 +47,9 @@ class RegisterRequest extends FormRequest
             'email' => [
                 'required',
                 'string',
-                'max:256'
+                'max:256',
+                'email',
+                "unique:$userTable,email"
             ],
             'password' => [
                 'required',

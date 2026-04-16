@@ -19,14 +19,11 @@ class EnsureActiveUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        /** @var \App\Models\UserModel */
+        /** @var \App\Models\User */
         $user = $request->user();
 
         if (!$user) {
             throw new ApiException('Usuário não autenticado!', 401);
-        }
-        if ($user->inactive) {
-            throw new ApiException('Acesso não autorizado. Usuário inativo!', 401);
         }
 
         return $next($request);

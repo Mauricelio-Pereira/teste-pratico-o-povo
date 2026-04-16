@@ -9,7 +9,7 @@ Route::whereNumber([
     'id',
     'userId'
 ])
-    ->middleware(['api', 'company.subdomain'])
+    ->middleware(['api'])
     ->group(function () {
 
         Route::controller(AuthController::class)
@@ -33,18 +33,14 @@ Route::whereNumber([
                     });
 
 
-
-                /*
                 Route::middleware([
                     'auth:sanctum',
                     'ensures.active.user'
                 ])
                     ->group(function () {
-                        Route::get('/refresh-token', 'refreshToken');
+                        //Route::get('/refresh-token', 'refreshToken');
                         Route::get('/logout', 'logout');
                     });
-
-                    */
             });
 
     });

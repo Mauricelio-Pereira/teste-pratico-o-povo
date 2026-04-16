@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Models\UserModel;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userTable = (new UserModel())->getTable();
+        $userTable = (new User())->getTable();
 
         return [
             'email' => [

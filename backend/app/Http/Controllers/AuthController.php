@@ -2,25 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserRoleEnum;
-use App\Exceptions\ApiException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\ForgotPasswordRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\ApiResponseResource;
 use App\Http\Resources\TokenResource;
 use App\Http\Resources\UserResource;
-use App\Jobs\Auth\ResetPasswordCodeJob;
-use App\Models\PasswordResetTokenModel;
-use App\Models\UserModel;
-use App\Utils\Helpers;
+use App\Models\User;
 use Carbon\Carbon;
-use DateTimeInterface;
-use Hash;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
-use Laravel\Sanctum\NewAccessToken;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -33,25 +23,71 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request): ApiResponseResource
     {
+        $email = $request->validated('email');
+        $password = $request->validated('password');
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user || !Hash::check($password, $user->password)) {
+            return new ApiResponseResource([
+                'code' => 401,
+                'data' => null,
+                'msg' => 'Credenciais inválidas. Verifique as credenciais inseridas e tente novamente.',
+                'ok' => false
+            ]);
+        }
+
+        $tokenExpiresAt = Carbon::now()->addDay();
+        $token = $user->createToken('api-token', ['*'], $tokenExpiresAt);
+
+        $tokenResource = new TokenResource([
+            'text' => $token->plainTextToken,
+            'expiresAt' => $tokenExpiresAt->format('Y-m-d H:i:s')
+        ]);
+
+        return new ApiResponseResource([
+            'code' => 200,
+            'data' => $tokenResource,
+            'msg' => 'Login realizado com sucesso!',
+            'ok' => true
+        ]);
+    }
+
+
+    /**
+     * Realizar o logout do usuário
+     *
+     * @return ApiResponseResource
+     */
+    public function logout(): ApiResponseResource
+    {
         return $this->transaction(
-            function () use ($request): ApiResponseResource {
-                $email = $request->validated('email');
-                $password = $request->validated('password');
+            function (): ApiResponseResource {
+                $user = $this->getAuthenticatedUser();
+                $user
+                    ->currentAccessToken()
+                    ->delete();
 
-                $user = $this->findUserByEmail($email);
+                return new ApiResponseResource([
+                    'code' => 200,
+                    'msg' => 'Logout realizado com sucesso!',
+                    'ok' => true
+                ]);
+            },
+            'Ocorreu um erro ao realizar o logout!'
+        );
+    }
 
-                if (
-                    !$user ||
-                    !Helpers::isNonEmptyString($user->password) ||
-                    !Hash::check($password, $user->password)
-                ) {
-                    throw new ApiException('Credenciais inválidas. Verifique as credenciais inseridas e tente novamente.', 401);
-                }
-
-                if ($user->inactive) {
-                    throw new ApiException('Acesso não autorizado. Usuário inativo!', 401);
-                }
-
+    /**
+     * Atualizar o token de autenticação do usuário
+     *
+     * @return ApiResponseResource O novo token de acesso gerado
+     */
+    /*public function refreshToken(): ApiResponseResource
+    {
+        return $this->transaction(
+            function (): ApiResponseResource {
+                $user = $this->getAuthenticatedUser();
                 $tokenExpiresAt = Carbon::now()
                     ->addDay();
                 $token = $this->createPersonalAccessToken($user, $tokenExpiresAt);
@@ -64,13 +100,14 @@ class AuthController extends Controller
                 return new ApiResponseResource([
                     'code' => 200,
                     'data' => $tokenResource,
-                    'msg' => 'Login realizado com sucesso!',
+                    'msg' => 'Token atualizado com sucesso!',
                     'ok' => true
                 ]);
             },
-            'Ocorreu um erro ao realizar o login. Por favor, tente novamente mais tarde!'
+            'Ocorreu um erro ao atualizar o token de autenticação!'
         );
     }
+    */
 
     /**
      * Criar usuário
@@ -81,32 +118,23 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request): ApiResponseResource
     {
-        return $this->transaction(
-            function () use ($request): ApiResponseResource {
-                $name = $request->validated('name');
-                $email = $request->validated('email');
-                $password = $request->validated('password');
+        $name = $request->validated('name');
+        $email = $request->validated('email');
+        $password = $request->validated('password');
 
-                $user = new UserModel();
-                $user->fill([
-                    'name' => $name,
-                    'email' => $email,
-                    'password' => $password
-                ]);
-                $user->save();
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password)
+        ]);
 
-                $user = UserModel::find($user->id);
+        $userResource = new UserResource($user);
 
-                $userResource = new UserResource($user);
-
-                return new ApiResponseResource([
-                    'code' => 201,
-                    'data' => $userResource,
-                    'msg' => 'Usuário cadastrado com sucesso!',
-                    'ok' => true
-                ]);
-            },
-            'Ocorreu um erro ao cadastrar o usuário!'
-        );
+        return new ApiResponseResource([
+            'code' => 201,
+            'data' => $userResource,
+            'msg' => 'Usuário cadastrado com sucesso!',
+            'ok' => true
+        ]);
     }
 }
