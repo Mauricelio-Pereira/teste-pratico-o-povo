@@ -17,11 +17,9 @@ Route::whereNumber([
             ->group(function () {
                 Route::middleware('guest')
                     ->group(function () {
-                        Route::post('/login', 'login')
-                            ->name('login');
+                        Route::post('/login', 'login');
 
-                        Route::post('/register', 'register')
-                            ->name('register');
+                        Route::post('/register', 'store');
 
                         /*Route::post('/forgot-password', 'forgotPassword');
 
@@ -38,7 +36,7 @@ Route::whereNumber([
                     'ensures.active.user'
                 ])
                     ->group(function () {
-                        //Route::get('/refresh-token', 'refreshToken');
+                        Route::get('/refresh-token', 'refreshToken');
                         Route::get('/logout', 'logout');
                     });
             });

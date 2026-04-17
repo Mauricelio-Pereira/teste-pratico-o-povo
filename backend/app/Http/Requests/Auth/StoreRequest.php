@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
 
-class RegisterRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Indicates if the validator should stop on the first rule failure.

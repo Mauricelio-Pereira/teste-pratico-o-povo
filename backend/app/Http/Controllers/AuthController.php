@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\StoreRequest;
 use App\Http\Resources\ApiResponseResource;
 use App\Http\Resources\TokenResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
+use Laravel\Sanctum\NewAccessToken;
 
 class AuthController extends Controller
 {
@@ -38,7 +42,7 @@ class AuthController extends Controller
         }
 
         $tokenExpiresAt = Carbon::now()->addDay();
-        $token = $user->createToken('api-token', ['*'], $tokenExpiresAt);
+        $token = $this->createPersonalAccessToken($user, $tokenExpiresAt);
 
         $tokenResource = new TokenResource([
             'text' => $token->plainTextToken,
@@ -83,7 +87,7 @@ class AuthController extends Controller
      *
      * @return ApiResponseResource O novo token de acesso gerado
      */
-    /*public function refreshToken(): ApiResponseResource
+    public function refreshToken(): ApiResponseResource
     {
         return $this->transaction(
             function (): ApiResponseResource {
@@ -107,16 +111,15 @@ class AuthController extends Controller
             'Ocorreu um erro ao atualizar o token de autenticação!'
         );
     }
-    */
 
     /**
      * Criar usuário
      *
-     * @param RegisterRequest $request A requisição recebida
+     * @param StoreRequest $request A requisição recebida
      *
      * @return ApiResponseResource O usuário recém criado
      */
-    public function register(RegisterRequest $request): ApiResponseResource
+    public function store(StoreRequest $request): ApiResponseResource
     {
         $name = $request->validated('name');
         $email = $request->validated('email');
@@ -136,5 +139,46 @@ class AuthController extends Controller
             'msg' => 'Usuário cadastrado com sucesso!',
             'ok' => true
         ]);
+    }
+
+    /**
+     * Criar token de autenticação para o usuário
+     *
+     * @param User $user A instância do User
+     * @param DateTimeInterface|null $expiresAt A data de expiração do token. Padrão `null`
+     *
+     * @return NewAccessToken O Token gerado
+     */
+    private function createPersonalAccessToken(User $user, DateTimeInterface|null $expiresAt = null): NewAccessToken
+    {
+        $this->revokePersonalAccessTokens($user);
+
+        $name = hash('sha256', Str::random(40));
+        $abilitites = ['*'];
+
+        return $user->createToken($name, $abilitites, $expiresAt);
+    }
+
+    /**
+     * Revogar tokens não utilizados
+     *
+     * @param User $user A instância do User
+     *
+     * @return void
+     */
+    private function revokePersonalAccessTokens(User $user): void
+    {
+        $user
+            ->tokens()
+            ->whereNull([
+                'last_used_at',
+                'last_used_at'
+            ])
+            ->where(function (Builder $query) {
+                $query
+                    ->whereNull('expires_at')
+                    ->orWhere('expires_at', '>', Carbon::now());
+            })
+            ->delete();
     }
 }
