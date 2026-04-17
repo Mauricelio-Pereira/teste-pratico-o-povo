@@ -21,7 +21,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'check.password.reset.token' => \App\Http\Middleware\CheckPasswordResetToken::class,
-            'ensures.active.user' => \App\Http\Middleware\EnsureActiveUser::class,
             'ensures.json' => \App\Http\Middleware\EnsureAcceptsJson::class,
         ]);
     })

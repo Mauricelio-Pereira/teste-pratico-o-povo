@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 Route::whereNumber([
     'id',
@@ -32,8 +30,7 @@ Route::whereNumber([
 
 
                 Route::middleware([
-                    'auth:sanctum',
-                    'ensures.active.user'
+                    'auth:sanctum'
                 ])
                     ->group(function () {
                         Route::get('/refresh-token', 'refreshToken');
