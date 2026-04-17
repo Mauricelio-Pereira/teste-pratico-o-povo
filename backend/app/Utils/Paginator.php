@@ -34,13 +34,13 @@ class Paginator
 
             return new PaginationResource([
                 'items' => $resourceClass::collection($items),
-                'pagination' => null,
+                'pagination' => null
             ]);
         }
 
         $paginated = $query->paginate(
             perPage: $perPage,
-            page: $page > 0 ? $page + 1 : 0,
+            page: $page > 0 ? $page + 1 : 0
         );
 
         $items = $paginated->items();

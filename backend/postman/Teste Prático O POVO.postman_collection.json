@@ -1,0 +1,1154 @@
+{
+  "info": {
+    "_postman_id": "c782f5bc-e16f-455f-a569-40bb3199ad67",
+    "name": "Teste Prático O POVO",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37949984"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Mauricelio",
+                  "description": "Nome do Usuário",
+                  "type": "text",
+                  "uuid": "54c7ca5a-b1d6-4271-82eb-93d7b60e8147"
+                },
+                {
+                  "key": "email",
+                  "value": "mauriceliopereira2404@gmail.com",
+                  "description": "E-mail do Usuário ",
+                  "type": "text",
+                  "uuid": "195b6d87-08e9-46c3-a35b-a5c331f269c8"
+                },
+                {
+                  "key": "password",
+                  "value": "teste123",
+                  "description": "Senha Provisória",
+                  "type": "text",
+                  "uuid": "c65fb583-911d-4d24-99ef-0fe35e95b9ac"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "name",
+                      "value": "Mauricelio",
+                      "description": "Nome do Usuário",
+                      "type": "text",
+                      "uuid": "54c7ca5a-b1d6-4271-82eb-93d7b60e8147"
+                    },
+                    {
+                      "key": "email",
+                      "value": "mauriceliopereira@gmail.com",
+                      "description": "E-mail do Usuário ",
+                      "type": "text",
+                      "uuid": "195b6d87-08e9-46c3-a35b-a5c331f269c8"
+                    },
+                    {
+                      "key": "password",
+                      "value": "teste123",
+                      "description": "Senha Provisória",
+                      "type": "text",
+                      "uuid": "c65fb583-911d-4d24-99ef-0fe35e95b9ac"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:41:51 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 201,\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Mauricelio\",\n        \"email\": \"mauriceliopereira@gmail.com\",\n        \"createdAt\": \"2026-04-17 20:41:51\",\n        \"updatedAt\": \"2026-04-17 20:41:51\"\n    },\n    \"msg\": \"Usuário cadastrado com sucesso!\",\n    \"ok\": true\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email",
+                  "value": "mauriceliopereira2404@gmail.com",
+                  "description": "E-mail do Usuário ",
+                  "type": "text",
+                  "uuid": "195b6d87-08e9-46c3-a35b-a5c331f269c8"
+                },
+                {
+                  "key": "password",
+                  "value": "teste123",
+                  "description": "Senha Provisória",
+                  "type": "text",
+                  "uuid": "c65fb583-911d-4d24-99ef-0fe35e95b9ac"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "email",
+                      "value": "mauriceliopereira2404@gmail.com",
+                      "description": "E-mail do Usuário ",
+                      "type": "text",
+                      "uuid": "195b6d87-08e9-46c3-a35b-a5c331f269c8"
+                    },
+                    {
+                      "key": "password",
+                      "value": "teste123",
+                      "description": "Senha Provisória",
+                      "type": "text",
+                      "uuid": "c65fb583-911d-4d24-99ef-0fe35e95b9ac"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:39:11 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"token\": {\n            \"text\": \"8|0wfP2Un6vueZdDSR2NdlXKeyRPH3X4OCgPFkK8Ve21e2d883\",\n            \"expiresAt\": \"2026-04-18 20:39:11\"\n        }\n    },\n    \"msg\": \"Login realizado com sucesso!\",\n    \"ok\": true\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:40:55 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"code\": 200,\n        \"msg\": \"Logout realizado com sucesso!\",\n        \"ok\": true\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "refresh-token"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/refresh-token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "refresh-token"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:40:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"token\": {\n            \"text\": \"9|TEoNqR7EwJ0gmMyeSy8SFi2wQmcInuCHkTdo1W4W37a306a9\",\n            \"expiresAt\": \"2026-04-18 20:40:35\"\n        }\n    },\n    \"msg\": \"Token atualizado com sucesso!\",\n    \"ok\": true\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Post",
+      "item": [
+        {
+          "name": "Index",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "perPage",
+                  "value": "20",
+                  "description": "Número de Linhas por Página",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "0",
+                  "description": "Página",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "ID do Blog",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "title",
+                  "value": "O POVO",
+                  "description": "Título do Blog",
+                  "disabled": true
+                },
+                {
+                  "key": "content",
+                  "value": "Lorem",
+                  "description": "Conteúdo do Blog",
+                  "disabled": true
+                },
+                {
+                  "key": "createdAt[start]",
+                  "value": "2026-04-17 17:00:00",
+                  "description": "Data de criação inicial do blog",
+                  "disabled": true
+                },
+                {
+                  "key": "createdAt[end]",
+                  "value": "2026-04-17 23:00:00",
+                  "description": "Data de criação fim do blog",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/posts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "posts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:32:01 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 1,\n                \"title\": \"Jornal O POVO\",\n                \"content\": \"Jornal Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n                \"createdAt\": \"2026-04-17 20:17:29\",\n                \"updatedAt\": \"2026-04-17 20:19:12\",\n                \"authorUser\": {\n                    \"id\": 1,\n                    \"name\": \"Mauricelio\",\n                    \"email\": \"mauriceliopereira2404@gmail.com\",\n                    \"createdAt\": \"2026-04-16 21:18:03\",\n                    \"updatedAt\": \"2026-04-16 21:18:03\"\n                }\n            },\n            {\n                \"id\": 2,\n                \"title\": \"O POVO\",\n                \"content\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n                \"createdAt\": \"2026-04-17 20:25:27\",\n                \"updatedAt\": \"2026-04-17 20:25:27\",\n                \"authorUser\": {\n                    \"id\": 2,\n                    \"name\": \"Anna Julya\",\n                    \"email\": \"annajulya@gmail.com\",\n                    \"createdAt\": \"2026-04-17 20:23:49\",\n                    \"updatedAt\": \"2026-04-17 20:23:49\"\n                }\n            }\n        ],\n        \"pagination\": {\n            \"currentPage\": 1,\n            \"perPage\": 20,\n            \"total\": 2,\n            \"lastPage\": 1,\n            \"nextPageUrl\": null,\n            \"previousPageUrl\": null\n        }\n    },\n    \"msg\": \"Dados carregados com sucesso!\",\n    \"ok\": true\n}"
+            }
+          ]
+        },
+        {
+          "name": "Show",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/posts/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/posts/{{id}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "posts",
+                    "{{id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:21:33 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Jornal O POVO\",\n        \"content\": \"Jornal Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n        \"createdAt\": \"2026-04-17 20:17:29\",\n        \"updatedAt\": \"2026-04-17 20:19:12\",\n        \"authorUser\": {\n            \"id\": 1,\n            \"name\": \"Mauricelio\",\n            \"email\": \"mauriceliopereira2404@gmail.com\",\n            \"createdAt\": \"2026-04-16 21:18:03\",\n            \"updatedAt\": \"2026-04-16 21:18:03\"\n        }\n    },\n    \"msg\": \"Dados carregados com sucesso!\",\n    \"ok\": true\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "title",
+                  "value": "O POVO",
+                  "description": "Título do Blog",
+                  "type": "text",
+                  "uuid": "92eff3cc-fc57-44c7-967f-ff3e59685acc"
+                },
+                {
+                  "key": "content",
+                  "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                  "description": "Conteúdo do Blog",
+                  "type": "text",
+                  "uuid": "348e3db9-4cac-40be-be93-ee67c07576a9"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "title",
+                      "value": "O POVO",
+                      "description": "Título do Blog",
+                      "type": "text",
+                      "uuid": "92eff3cc-fc57-44c7-967f-ff3e59685acc"
+                    },
+                    {
+                      "key": "content",
+                      "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                      "description": "Conteúdo do Blog",
+                      "type": "text",
+                      "uuid": "348e3db9-4cac-40be-be93-ee67c07576a9"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/posts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "posts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:17:29 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 201,\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"O POVO\",\n        \"content\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n        \"createdAt\": \"2026-04-17 20:17:29\",\n        \"updatedAt\": \"2026-04-17 20:17:29\",\n        \"authorUser\": {\n            \"id\": 1,\n            \"name\": \"Mauricelio\",\n            \"email\": \"mauriceliopereira2404@gmail.com\",\n            \"createdAt\": \"2026-04-16 21:18:03\",\n            \"updatedAt\": \"2026-04-16 21:18:03\"\n        }\n    },\n    \"msg\": \"Blog cadastrado com sucesso!\",\n    \"ok\": true\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "title",
+                  "value": "Jornal O POVO",
+                  "description": "Título do Blog",
+                  "type": "text",
+                  "uuid": "92eff3cc-fc57-44c7-967f-ff3e59685acc"
+                },
+                {
+                  "key": "content",
+                  "value": "Jornal Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                  "description": "Conteúdo do Blog",
+                  "type": "text",
+                  "uuid": "348e3db9-4cac-40be-be93-ee67c07576a9"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/posts/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "title",
+                      "value": "Jornal O POVO",
+                      "description": "Título do Blog",
+                      "type": "text",
+                      "uuid": "92eff3cc-fc57-44c7-967f-ff3e59685acc"
+                    },
+                    {
+                      "key": "content",
+                      "value": "Jornal Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                      "description": "Conteúdo do Blog",
+                      "type": "text",
+                      "uuid": "348e3db9-4cac-40be-be93-ee67c07576a9"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/posts/{{id}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "posts",
+                    "{{id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:19:12 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Jornal O POVO\",\n        \"content\": \"Jornal Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n        \"createdAt\": \"2026-04-17 20:17:29\",\n        \"updatedAt\": \"2026-04-17 20:19:12\",\n        \"authorUser\": {\n            \"id\": 1,\n            \"name\": \"Mauricelio\",\n            \"email\": \"mauriceliopereira2404@gmail.com\",\n            \"createdAt\": \"2026-04-16 21:18:03\",\n            \"updatedAt\": \"2026-04-16 21:18:03\"\n        }\n    },\n    \"msg\": \"Dados do blog atualizados com sucesso!\",\n    \"ok\": true\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/posts/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/posts/{{id}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "posts",
+                    "{{id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "test.localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.3.30"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 23:39:54 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Charset",
+                  "value": "UTF-8"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization, X-Requested-With"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"code\": 200,\n        \"msg\": \"Blog excluído com sucesso!\",\n        \"ok\": true\n    }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

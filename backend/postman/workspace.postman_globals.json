@@ -1,0 +1,21 @@
+{
+	"id": "8fb6c932-68c3-4597-88f1-397b8641ccc8",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2026-04-17T23:45:41.977Z",
+	"_postman_exported_using": "Postman/11.92.0"
+}

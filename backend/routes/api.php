@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::whereNumber([
@@ -38,4 +39,20 @@ Route::whereNumber([
                     });
             });
 
+        Route::middleware([
+            'auth:sanctum'
+        ])
+            ->group(function () {
+                Route::controller(PostController::class)
+                    ->prefix('posts')
+                    ->group(function () {
+                        Route::get('/', 'index');
+                        Route::get('/{id}', 'show');
+                        Route::post('/', 'store');
+                        Route::put('/{id}', 'update');
+                        Route::delete('/{id}', 'destroy');
+                    });
+
+                // Add more authenticated routes here
+            });
     });

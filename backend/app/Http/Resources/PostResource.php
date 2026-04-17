@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\User
+ * @mixin \App\Models\Post
  */
-class UserResource extends JsonResource
+class PostResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -23,13 +23,13 @@ class UserResource extends JsonResource
                 'id',
                 $this->id
             ),
-            'name' => $this->whenHas(
-                'name',
-                $this->name
+            'title' => $this->whenHas(
+                'title',
+                $this->title
             ),
-            'email' => $this->whenHas(
-                'email',
-                $this->email
+            'content' => $this->whenHas(
+                'content',
+                $this->content
             ),
             'createdAt' => $this->whenHas(
                 'created_at',
@@ -40,6 +40,12 @@ class UserResource extends JsonResource
                 'updated_at',
                 Carbon::parse($this->updated_at)
                     ->format('Y-m-d H:i:s')
+            ),
+            'authorUser' => $this->whenLoaded(
+                'authorUser',
+                function () {
+                    return new UserResource($this->authorUser);
+                }
             )
         ];
     }

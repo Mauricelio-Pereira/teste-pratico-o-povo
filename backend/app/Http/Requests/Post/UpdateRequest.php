@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Post;
 
-use App\Models\User;
+use App\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Indicates if the validator should stop on the first rule failure.
@@ -22,9 +22,22 @@ class LoginRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'email' => 'E-mail',
-            'password' => 'Senha'
+            'id' => 'ID do Blog',
+            'title' => 'Título do Blog',
+            'content' => 'Conteúdo do Blog'
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'id' => $this->route('id')
+        ]);
     }
 
     /**
@@ -34,19 +47,22 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userTable = (new User())->getTable();
+        $postTable = (new Post())->getTable();
 
         return [
-            'email' => [
+            'id' => [
                 'required',
-                'string',
-                'email',
-                "exists:$userTable,email"
+                'numeric',
+                "exists:$postTable,id"
             ],
-            'password' => [
-                'required',
+            'title' => [
+                'nullable',
                 'string',
-                'max:256'
+                'max:255'
+            ],
+            'content' => [
+                'nullable',
+                'string'
             ]
         ];
     }
@@ -59,7 +75,7 @@ class LoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.exists' => 'Credenciais inválidas. Verifique as credenciais inseridas e tente novamente'
+            'id.exists' => 'O ":attribute" informado não existe'
         ];
     }
 }

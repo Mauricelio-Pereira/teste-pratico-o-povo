@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Post;
 
-use App\Models\User;
+use App\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Indicates if the validator should stop on the first rule failure.
@@ -22,8 +22,8 @@ class LoginRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'email' => 'E-mail',
-            'password' => 'Senha'
+            'title' => 'Título do Blog',
+            'content' => 'Conteúdo do Blog'
         ];
     }
 
@@ -34,32 +34,18 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userTable = (new User())->getTable();
+        $postTable = (new Post())->getTable();
 
         return [
-            'email' => [
+            'title' => [
                 'required',
                 'string',
-                'email',
-                "exists:$userTable,email"
+                'max:255',
             ],
-            'password' => [
+            'content' => [
                 'required',
-                'string',
-                'max:256'
+                'string'
             ]
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
-        return [
-            'email.exists' => 'Credenciais inválidas. Verifique as credenciais inseridas e tente novamente'
         ];
     }
 }

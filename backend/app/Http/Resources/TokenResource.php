@@ -32,7 +32,7 @@ class TokenResource extends JsonResource
                     Helpers::isNonEmptyString($expiresAt),
                     $expiresAt,
                 )
-            ],
+            ]
         ];
     }
 

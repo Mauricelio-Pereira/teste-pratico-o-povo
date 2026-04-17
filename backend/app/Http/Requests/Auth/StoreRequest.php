@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'Nome do Usuário',
             'email' => 'E-mail do Usuário',
-            'password' => 'Senha Provisória',
+            'password' => 'Senha Provisória'
         ];
     }
 
@@ -56,7 +56,7 @@ class StoreRequest extends FormRequest
                 'string',
                 'max:256',
                 Password::defaults()
-            ],
+            ]
         ];
     }
 }
