@@ -170,7 +170,6 @@ class AuthController extends Controller
         $user
             ->tokens()
             ->whereNull([
-                'last_used_at',
                 'last_used_at'
             ])
             ->where(function (Builder $query) {
