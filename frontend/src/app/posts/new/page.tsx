@@ -30,9 +30,7 @@ export default function NewPostPage() {
     onError: (e: Error) => showToast(e.message, 'error'),
   });
 
-  const handleSubmit = async (data: PostFormData) => {
-    mutation.mutate(data);
-  };
+  const handleSubmit = async (data: PostFormData) => { await mutation.mutateAsync(data).catch(() => {}); };
 
   return (
     <>

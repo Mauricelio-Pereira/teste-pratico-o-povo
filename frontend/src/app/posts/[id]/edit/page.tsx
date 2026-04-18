@@ -83,7 +83,7 @@ export default function EditPostPage() {
           <h1 className="text-2xl font-bold text-gray-900 mb-6">Editar post</h1>
           <PostForm
             defaultValues={{ title: post.title, content: post.content }}
-            onSubmit={(data) => { mutation.mutate(data); return Promise.resolve(); }}
+            onSubmit={async (data) => { await mutation.mutateAsync(data).catch(() => {}); }}
             submitLabel="Salvar alterações"
           />
         </div>

@@ -241,11 +241,11 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -261,7 +261,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 17 Apr 2026 23:39:11 GMT"
+                  "value": "Sat, 18 Apr 2026 20:07:04 GMT"
                 },
                 {
                   "key": "Content-Type",
@@ -285,7 +285,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"token\": {\n            \"text\": \"8|0wfP2Un6vueZdDSR2NdlXKeyRPH3X4OCgPFkK8Ve21e2d883\",\n            \"expiresAt\": \"2026-04-18 20:39:11\"\n        }\n    },\n    \"msg\": \"Login realizado com sucesso!\",\n    \"ok\": true\n}"
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"token\": {\n            \"text\": \"25|emsmVEeCu8pE9DMX9ckBC3fmPNYfAIL1Y6hTt9fMfd29ed14\",\n            \"expiresAt\": \"2026-04-19 17:07:04\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"Mauricelio\",\n            \"email\": \"mauriceliopereira2404@gmail.com\",\n            \"createdAt\": \"2026-04-16 21:18:03\",\n            \"updatedAt\": \"2026-04-16 21:18:03\"\n        }\n    },\n    \"msg\": \"Login realizado com sucesso!\",\n    \"ok\": true\n}"
             }
           ]
         },
@@ -346,11 +346,11 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -366,7 +366,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 17 Apr 2026 23:40:55 GMT"
+                  "value": "Sat, 18 Apr 2026 20:04:41 GMT"
                 },
                 {
                   "key": "Content-Type",
@@ -390,7 +390,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"data\": {\n        \"code\": 200,\n        \"msg\": \"Logout realizado com sucesso!\",\n        \"ok\": true\n    }\n}"
+              "body": "{\n    \"code\": 200,\n    \"msg\": \"Logout realizado com sucesso!\",\n    \"ok\": true\n}"
             }
           ]
         },
@@ -1100,11 +1100,11 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -1120,7 +1120,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 17 Apr 2026 23:39:54 GMT"
+                  "value": "Sat, 18 Apr 2026 20:06:34 GMT"
                 },
                 {
                   "key": "Content-Type",
@@ -1144,7 +1144,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"data\": {\n        \"code\": 200,\n        \"msg\": \"Blog excluído com sucesso!\",\n        \"ok\": true\n    }\n}"
+              "body": "{\n    \"code\": 200,\n    \"msg\": \"Blog excluído com sucesso!\",\n    \"ok\": true\n}"
             }
           ]
         }
