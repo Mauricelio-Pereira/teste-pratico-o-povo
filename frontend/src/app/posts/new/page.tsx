@@ -20,7 +20,7 @@ export default function NewPostPage() {
 
   const mutation = useMutation({
     mutationFn: (data: PostFormData) =>
-      savePost({ token: auth.token, postData: data }),
+      savePost({ token: auth.token.text, postData: data }),
     onSuccess: (res) => {
       if (!res.ok) throw new Error(res.msg);
       queryClient.invalidateQueries({ queryKey: ['posts'] });

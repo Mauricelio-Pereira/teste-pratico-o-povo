@@ -1,20 +1,16 @@
+import { UserType, InitialUserState } from '@/types/user';
+
 export type TokenType = {
   text: string;
   expiresAt: string;
 };
 
 export type AuthStateType = {
-  token: string;
-  expiresAt: string;
-  userId: number;
-  userName: string;
-  userEmail: string;
+  token: TokenType;
+  user: UserType;
 };
 
 export const InitialAuthState: AuthStateType = {
-  token: '',
-  expiresAt: '',
-  userId: 0,
-  userName: '',
-  userEmail: '',
+  token: { text: '', expiresAt: '' },
+  user: InitialUserState,
 };

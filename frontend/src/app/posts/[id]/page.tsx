@@ -24,12 +24,12 @@ export default function PostDetailPage() {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['post', id],
-    queryFn: () => getPost({ token: auth.token, id: Number(id) }),
+    queryFn: () => getPost({ token: auth.token.text, id: Number(id) }),
     enabled: isAuthenticated && !!id,
   });
 
   const deleteMutation = useMutation({
-    mutationFn: () => deletePost({ token: auth.token, id: Number(id) }),
+    mutationFn: () => deletePost({ token: auth.token.text, id: Number(id) }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
       showToast('Post excluído com sucesso!', 'success');
@@ -42,7 +42,7 @@ export default function PostDetailPage() {
   });
 
   const post = data?.data;
-  const isAuthor = post?.authorUser.id === auth.userId;
+  const isAuthor = post?.authorUser.id === auth.user.id;
 
   if (isLoading || isAuthLoading || !isAuthenticated) return <PageLoader />;
 

@@ -57,7 +57,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-2 text-sm text-gray-700">
             <User className="w-4 h-4 text-gray-400" />
-            <span className="hidden sm:block max-w-[120px] truncate">{auth.userName}</span>
+            <span className="hidden sm:block max-w-[120px] truncate">{auth.user.name}</span>
           </div>
 
           <Button size="sm" variant="ghost" onClick={handleSignOut}>

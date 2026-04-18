@@ -30,7 +30,7 @@ export default function ReportsPage() {
     queryKey: ['report-posts', appliedStart, appliedEnd],
     queryFn: () =>
       listPost({
-        token: auth.token,
+        token: auth.token.text,
         perPage: 999,
         requestParams: {
           'createdAt.start': appliedStart || null,

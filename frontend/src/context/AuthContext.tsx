@@ -8,7 +8,8 @@ import {
   useState,
 } from 'react';
 
-import { AuthStateType, InitialAuthState } from '@/types/auth';
+import { AuthStateType, InitialAuthState, TokenType } from '@/types/auth';
+import { UserType } from '@/types/user';
 import { logout } from '@/services/authApi';
 
 const AUTH_STORAGE_KEY = 'blog_auth';
@@ -17,7 +18,7 @@ type AuthContextType = {
   auth: AuthStateType;
   isAuthenticated: boolean;
   isAuthLoading: boolean;
-  signIn: (token: string, expiresAt: string, userId: number, userName: string, userEmail: string) => void;
+  signIn: (token: TokenType, user: UserType) => void;
   signOut: () => Promise<void>;
 };
 
@@ -26,13 +27,13 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [auth, setAuth] = useState<AuthStateType>(InitialAuthState);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
-  
+
   useEffect(() => {
     try {
       const stored = localStorage.getItem(AUTH_STORAGE_KEY);
       if (stored) {
         const parsed: AuthStateType = JSON.parse(stored);
-        const isExpired = new Date(parsed.expiresAt) < new Date();
+        const isExpired = new Date(parsed.token.expiresAt) < new Date();
         if (isExpired) {
           localStorage.removeItem(AUTH_STORAGE_KEY);
         } else {
@@ -46,29 +47,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const signIn = useCallback(
-    (token: string, expiresAt: string, userId: number, userName: string, userEmail: string) => {
-      const newAuth: AuthStateType = { token, expiresAt, userId, userName, userEmail };
-      setAuth(newAuth);
-      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(newAuth));
-    },
-    [],
-  );
+  const signIn = useCallback((token: TokenType, user: UserType) => {
+    const newAuth: AuthStateType = { token, user };
+    setAuth(newAuth);
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(newAuth));
+  }, []);
 
   const signOut = useCallback(async () => {
-    if (auth.token) {
+    if (auth.token.text) {
       try {
-        await logout({ token: auth.token });
+        await logout({ token: auth.token.text });
       } catch {
         // ignora erro de logout na API, limpa sessão local de qualquer forma
       }
     }
     setAuth(InitialAuthState);
     localStorage.removeItem(AUTH_STORAGE_KEY);
-  }, [auth.token]);
+  }, [auth.token.text]);
 
-  const isAuthenticated = !!auth.token;
-        
+  const isAuthenticated = !!auth.token.text;
+
   return (
     <AuthContext.Provider value={{ auth, isAuthenticated, isAuthLoading, signIn, signOut }}>
       {children}

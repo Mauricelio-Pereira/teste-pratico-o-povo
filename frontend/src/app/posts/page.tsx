@@ -22,7 +22,7 @@ export default function PostsPage() {
     queryKey: ['posts', page, search],
     queryFn: () =>
       listPost({
-        token: auth.token,
+        token: auth.token.text,
         page,
         perPage: 12,
         requestParams: search ? { title: search } : undefined,

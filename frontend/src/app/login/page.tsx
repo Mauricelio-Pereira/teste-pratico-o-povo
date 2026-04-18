@@ -37,13 +37,7 @@ export default function LoginPage() {
 
       if (!ok || !data) throw new Error(msg);
 
-      signIn(
-        data.token.text,
-        data.token.expiresAt,
-        0,
-        form.email.split('@')[0],
-        form.email,
-      );
+      signIn(data.token, data.user);
 
       router.push('/posts');
     } catch (e: any) {

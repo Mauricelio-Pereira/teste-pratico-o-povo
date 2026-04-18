@@ -20,14 +20,14 @@ export default function EditPostPage() {
 
   const { data, isLoading } = useQuery({
     queryKey: ['post', id],
-    queryFn: () => getPost({ token: auth.token, id: Number(id) }),
+    queryFn: () => getPost({ token: auth.token.text, id: Number(id) }),
     enabled: isAuthenticated && !!id,
   });
 
   const mutation = useMutation({
     mutationFn: (formData: PostFormData) =>
       editPost({
-        token: auth.token,
+        token: auth.token.text,
         postData: { id: Number(id), ...formData },
       }),
     onSuccess: (res) => {
@@ -55,7 +55,7 @@ export default function EditPostPage() {
     );
   }
 
-  const isAuthor = post.authorUser.id === auth.userId;
+  const isAuthor = post.authorUser.id === auth.user.id;
 
   if (!isAuthor) {
     return (

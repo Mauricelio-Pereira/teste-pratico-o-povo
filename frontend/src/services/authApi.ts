@@ -17,6 +17,7 @@ type LoginProps = {
 
 type LoginResponseData = {
   token: TokenType;
+  user: UserType;
 };
 
 // ==================== Funções ====================

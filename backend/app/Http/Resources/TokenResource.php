@@ -5,10 +5,12 @@ namespace App\Http\Resources;
 use App\Utils\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\UserResource;
 
 /**
  * @property string $text O token
  * @property string $expiresAt A data de expiração do token
+ * @property UserResource $user O usuário autenticado
  */
 class TokenResource extends JsonResource
 {
@@ -21,6 +23,7 @@ class TokenResource extends JsonResource
     {
         $text = $this->resolveProperty('text');
         $expiresAt = $this->resolveProperty('expiresAt');
+        $user = $this->resolveProperty('user');
 
         return [
             'token' => [
@@ -32,7 +35,11 @@ class TokenResource extends JsonResource
                     Helpers::isNonEmptyString($expiresAt),
                     $expiresAt,
                 )
-            ]
+            ],
+            'user' => $this->when(
+                $user instanceof UserResource,
+                $user,
+            ),
         ];
     }
 

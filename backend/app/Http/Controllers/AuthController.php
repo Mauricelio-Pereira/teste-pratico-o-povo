@@ -45,7 +45,8 @@ class AuthController extends Controller
 
         $tokenResource = new TokenResource([
             'text' => $token->plainTextToken,
-            'expiresAt' => $tokenExpiresAt->format('Y-m-d H:i:s')
+            'expiresAt' => $tokenExpiresAt->format('Y-m-d H:i:s'),
+            'user' => new UserResource($user)
         ]);
 
         return new ApiResponseResource([
