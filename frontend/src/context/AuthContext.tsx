@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { AuthStateType, InitialAuthState } from '@/types/auth';
 import { logout } from '@/services/authApi';
 
@@ -16,6 +16,7 @@ const AUTH_STORAGE_KEY = 'blog_auth';
 type AuthContextType = {
   auth: AuthStateType;
   isAuthenticated: boolean;
+  isAuthLoading: boolean;
   signIn: (token: string, expiresAt: string, userId: number, userName: string, userEmail: string) => void;
   signOut: () => Promise<void>;
 };
@@ -23,19 +24,25 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
   const [auth, setAuth] = useState<AuthStateType>(InitialAuthState);
-
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
+  
   useEffect(() => {
-    const stored = localStorage.getItem(AUTH_STORAGE_KEY);
-    if (stored) {
-      const parsed: AuthStateType = JSON.parse(stored);
-      const isExpired = new Date(parsed.expiresAt) < new Date();
-      if (isExpired) {
-        localStorage.removeItem(AUTH_STORAGE_KEY);
-      } else {
-        setAuth(parsed);
+    try {
+      const stored = localStorage.getItem(AUTH_STORAGE_KEY);
+      if (stored) {
+        const parsed: AuthStateType = JSON.parse(stored);
+        const isExpired = new Date(parsed.expiresAt) < new Date();
+        if (isExpired) {
+          localStorage.removeItem(AUTH_STORAGE_KEY);
+        } else {
+          setAuth(parsed);
+        }
       }
+    } catch {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+    } finally {
+      setIsAuthLoading(false);
     }
   }, []);
 
@@ -58,13 +65,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     setAuth(InitialAuthState);
     localStorage.removeItem(AUTH_STORAGE_KEY);
-    router.push('/login');
-  }, [auth.token, router]);
+  }, [auth.token]);
 
   const isAuthenticated = !!auth.token;
-
+        
   return (
-    <AuthContext.Provider value={{ auth, isAuthenticated, signIn, signOut }}>
+    <AuthContext.Provider value={{ auth, isAuthenticated, isAuthLoading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

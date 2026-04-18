@@ -13,11 +13,11 @@ import { Button } from '@/components/ui/Button';
 
 const schema = z
   .object({
-    name: z.string().min(2, 'Nome deve ter ao menos 2 caracteres').max(256),
-    email: z.string().email('E-mail inválido'),
+    name: z.string().min(2, { message: 'Nome deve ter ao menos 2 caracteres' }).max(256),
+    email: z.string().email({ message: 'E-mail inválido' }),
     password: z
       .string()
-      .min(8, 'Senha deve ter ao menos 8 caracteres')
+      .min(8, { message: 'Senha deve ter ao menos 8 caracteres' })
       .max(256),
     confirmPassword: z.string(),
   })

@@ -8,8 +8,8 @@ import { Textarea } from '@/components/ui/Textarea';
 import { Button } from '@/components/ui/Button';
 
 const schema = z.object({
-  title: z.string().min(1, 'Título obrigatório').max(255, 'Título muito longo'),
-  content: z.string().min(1, 'Conteúdo obrigatório'),
+  title: z.string().min(1, { message: 'Título obrigatório' }).max(255, { message: 'Título muito longo' }),
+  content: z.string().min(1, { message: 'Conteúdo obrigatório' }),
 });
 
 export type PostFormData = z.infer<typeof schema>;

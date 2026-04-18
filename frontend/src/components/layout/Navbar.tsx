@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/Button';
 import { BookOpen, FileText, LogOut, PenSquare, User } from 'lucide-react';
@@ -9,6 +9,12 @@ import { BookOpen, FileText, LogOut, PenSquare, User } from 'lucide-react';
 export function Navbar() {
   const { auth, signOut } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push('/login');
+  };
 
   const navLinks = [
     { href: '/posts', label: 'Posts', icon: BookOpen },
@@ -54,7 +60,7 @@ export function Navbar() {
             <span className="hidden sm:block max-w-[120px] truncate">{auth.userName}</span>
           </div>
 
-          <Button size="sm" variant="ghost" onClick={signOut}>
+          <Button size="sm" variant="ghost" onClick={handleSignOut}>
             <LogOut className="w-4 h-4" />
             <span className="hidden sm:block">Sair</span>
           </Button>

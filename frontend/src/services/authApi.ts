@@ -41,7 +41,7 @@ export const login = async (
     return response.data;
   } catch (e: any) {
     console.error('Erro ao realizar login:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao realizar login.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao realizar login.');
   }
 };
 
@@ -53,7 +53,7 @@ export const logout = async ({ token }: TokenProp): Promise<ReturnType> => {
     return response.data;
   } catch (e: any) {
     console.error('Erro ao realizar logout:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao realizar logout.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao realizar logout.');
   }
 };
 
@@ -67,6 +67,6 @@ export const refreshToken = async ({
     return response.data;
   } catch (e: any) {
     console.error('Erro ao atualizar token:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao atualizar token.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao atualizar token.');
   }
 };

@@ -63,7 +63,7 @@ export const listPost = async ({
     if (e.name === 'CanceledError') throw e;
 
     console.error('Erro ao listar posts:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao listar posts.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao listar posts.');
   }
 };
 
@@ -83,7 +83,7 @@ export const getPost = async ({
     if (e.name === 'CanceledError') throw e;
 
     console.error('Erro ao buscar post:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao buscar post.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao buscar post.');
   }
 };
 
@@ -99,7 +99,7 @@ export const savePost = async ({
     return response.data;
   } catch (e: any) {
     console.error('Erro ao criar post:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao criar post.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao criar post.');
   }
 };
 
@@ -117,7 +117,7 @@ export const editPost = async ({
     return response.data;
   } catch (e: any) {
     console.error('Erro ao editar post:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao editar post.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao editar post.');
   }
 };
 
@@ -133,6 +133,6 @@ export const deletePost = async ({
     return response.data;
   } catch (e: any) {
     console.error('Erro ao excluir post:', e.response?.data || e.message);
-    throw new Error(e.response?.data?.msg || 'Erro desconhecido ao excluir post.');
+    throw new Error(e.response?.data?.data?.msg || 'Erro desconhecido ao excluir post.');
   }
 };

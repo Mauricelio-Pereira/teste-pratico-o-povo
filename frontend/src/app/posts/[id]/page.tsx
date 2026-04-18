@@ -15,7 +15,8 @@ import { Toast, useToast } from '@/components/ui/Toast';
 
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const { auth, isAuthenticated } = useRequireAuth();
+  const { auth, isAuthenticated, isAuthLoading } = useRequireAuth();
+
   const router = useRouter();
   const queryClient = useQueryClient();
   const { toast, showToast, hideToast } = useToast();
@@ -43,7 +44,7 @@ export default function PostDetailPage() {
   const post = data?.data;
   const isAuthor = post?.authorUser.id === auth.userId;
 
-  if (isLoading) return <PageLoader />;
+  if (isLoading || isAuthLoading || !isAuthenticated) return <PageLoader />;
 
   if (isError || !post) {
     return (

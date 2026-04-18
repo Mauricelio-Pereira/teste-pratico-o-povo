@@ -30,20 +30,19 @@ export default function LoginPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (form: FormData) => {
     setError('');
     try {
-      const res = await login(data);
-      if (!res.ok || !res.data) throw new Error(res.msg);
+      const {ok, msg, data} = await login(form);
 
-      // busca nome/email do usuário a partir do token (faremos com refresh)
-      // por enquanto gravamos o que temos
+      if (!ok || !data) throw new Error(msg);
+
       signIn(
-        res.data.token.text,
-        res.data.token.expiresAt,
+        data.token.text,
+        data.token.expiresAt,
         0,
-        data.email.split('@')[0],
-        data.email,
+        form.email.split('@')[0],
+        form.email,
       );
 
       router.push('/posts');

@@ -7,10 +7,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRequireAuth } from '@/hooks/useRequireAuth';
 import { savePost } from '@/services/postApi';
 import { PostForm, PostFormData } from '@/components/posts/PostForm';
+import { PageLoader } from '@/components/ui/LoadingSpinner';
 import { Toast, useToast } from '@/components/ui/Toast';
 
 export default function NewPostPage() {
-  const { auth } = useRequireAuth();
+  const { auth, isAuthenticated, isAuthLoading } = useRequireAuth();
+
+  if (isAuthLoading  || !isAuthenticated) return <PageLoader />;
   const router = useRouter();
   const queryClient = useQueryClient();
   const { toast, showToast, hideToast } = useToast();

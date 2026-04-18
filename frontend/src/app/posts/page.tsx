@@ -11,11 +11,13 @@ import { Button } from '@/components/ui/Button';
 import { PageLoader } from '@/components/ui/LoadingSpinner';
 
 export default function PostsPage() {
-  const { auth, isAuthenticated } = useRequireAuth();
+
+  const { auth, isAuthenticated, isAuthLoading } = useRequireAuth(); 
+
   const [search, setSearch] = useState('');
   const [searchInput, setSearchInput] = useState('');
-  const [page, setPage] = useState(1);
-
+  const [page, setPage] = useState(0);
+   
   const { data, isLoading, isError } = useQuery({
     queryKey: ['posts', page, search],
     queryFn: () =>
@@ -26,12 +28,12 @@ export default function PostsPage() {
         requestParams: search ? { title: search } : undefined,
       }),
     enabled: isAuthenticated,
-  });
+  });  
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearch(searchInput);
-    setPage(1);
+    setPage(0);
   };
 
   const posts = data?.data?.items ?? [];
@@ -60,57 +62,60 @@ export default function PostsPage() {
         </form>
       </div>
 
-      {isLoading && <PageLoader />}
-
-      {isError && (
-        <div className="text-center py-16 text-red-500">
-          Erro ao carregar posts. Tente novamente.
-        </div>
-      )}
-
-      {!isLoading && !isError && posts.length === 0 && (
-        <div className="text-center py-16 text-gray-400">
-          <p className="text-lg">Nenhum blog encontrado.</p>
-          {search && (
-            <button
-              className="text-blue-600 text-sm mt-2 hover:underline"
-              onClick={() => { setSearch(''); setSearchInput(''); }}
-            >
-              Limpar busca
-            </button>
+      {(isLoading || isAuthLoading || !isAuthenticated) ? 
+        <PageLoader /> : 
+        <>
+          {isError && (
+            <div className="text-center py-16 text-red-500">
+              Erro ao carregar posts. Tente novamente.
+            </div>
           )}
-        </div>
-      )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </div>
+          {!isLoading && !isError && posts.length === 0 && (
+            <div className="text-center py-16 text-gray-400">
+              <p className="text-lg">Nenhum blog encontrado.</p>
+              {search && (
+                <button
+                  className="text-blue-600 text-sm mt-2 hover:underline"
+                  onClick={() => { setSearch(''); setSearchInput(''); }}
+                >
+                  Limpar busca
+                </button>
+              )}
+            </div>
+          )}
 
-      {pagination && pagination.lastPage > 1 && (
-        <div className="flex items-center justify-center gap-3 mt-10">
-          <Button
-            variant="secondary"
-            size="sm"
-            disabled={page === 1}
-            onClick={() => setPage((p) => p - 1)}
-          >
-            Anterior
-          </Button>
-          <span className="text-sm text-gray-600">
-            Página {pagination.currentPage} de {pagination.lastPage}
-          </span>
-          <Button
-            variant="secondary"
-            size="sm"
-            disabled={page === pagination.lastPage}
-            onClick={() => setPage((p) => p + 1)}
-          >
-            Próxima
-          </Button>
-        </div>
-      )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {posts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+
+          {pagination && pagination.lastPage > 1 && (
+            <div className="flex items-center justify-center gap-3 mt-10">
+              <Button
+                variant="secondary"
+                size="sm"
+                disabled={page === 0}
+                onClick={() => setPage((p) => p - 1)}
+              >
+                Anterior
+              </Button>
+              <span className="text-sm text-gray-600">
+                Página {pagination.currentPage} de {pagination.lastPage}
+              </span>
+              <Button
+                variant="secondary"
+                size="sm"
+                disabled={page === (pagination.lastPage - 1)}
+                onClick={() => setPage((p) => p + 1)}
+              >
+                Próxima
+              </Button>
+            </div>
+          )}
+        </>
+      }
     </div>
   );
 }
