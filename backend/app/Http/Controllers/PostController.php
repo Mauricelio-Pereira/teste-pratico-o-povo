@@ -156,7 +156,7 @@ class PostController extends Controller
                 $post = Post::find($id);
 
                 if ($user->id !== $post->author_user_id) {
-                    throw new ApiException('Não é possível atualizar os dados de um blog de outro(a) autor(a)!', 401);
+                    throw new ApiException('Não é possível atualizar os dados de um blog de outro(a) autor(a)!', 403);
                 }
 
                 $post->fill([
@@ -210,7 +210,7 @@ class PostController extends Controller
                 $post = Post::find($id);
 
                 if ($user->id !== $post->author_user_id) {
-                    throw new ApiException('Não é possível excluir um blog de outro(a) autor(a)!', 401);
+                    throw new ApiException('Não é possível excluir um blog de outro(a) autor(a)!', 403);
                 }
 
                 $post->delete();

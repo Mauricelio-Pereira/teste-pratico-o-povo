@@ -39,7 +39,7 @@ class ApiExceptionHandler
             if ($exception instanceof ValidationException) {
                 $code = 400;
             } elseif ($exception instanceof AuthorizationException) {
-                $code = 401;
+                $code = 403;
             }
         } elseif ($exception instanceof AuthenticationException) {
             $msg = 'Acesso não autorizado. Por favor, faça login para continuar.';
