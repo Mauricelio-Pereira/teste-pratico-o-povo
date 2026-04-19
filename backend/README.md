@@ -1,66 +1,213 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Control Tac API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema de Gerenciamento para Blog colaborativo (API)
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ **Tecnologias Utilizadas**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Framework:** `Laravel 11x`
+- **PHP:** `8.2.12`
+- **Banco de Dados:** `MySQL 8.2.12`
+- **SGBD:** `phpMyAdmin 5.2.1`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **Extensões PHP Necessárias**
+- `openssl`
+- `gd`
+- `zip`
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 **Instruções de Instalação**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🛠️ **Configuração do Ambiente**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+> [!IMPORTANT]
+> Consultar a [Documentação do Laravel](https://laravel.com/docs/11.x/installation)
 
-## Laravel Sponsors
+1. **Instale o PHP e Composer**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Abra o seu terminal e execute o seguinte comando para instalar o PHP e o Composer, necessários para a execução do projeto:
 
-### Premium Partners
+```bash
+# Run as administrator...
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Windows
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows'))
 
-## Contributing
+# Linux
+/bin/bash -c "$(curl -fsSL https://php.new/install/linux)"
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Após a finalização da instalação, é recomendado que se reinicie o terminal.
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. **Instale o Laravel Installer**
 
-## Security Vulnerabilities
+- Ainda no terminal, execute o seguinte comando para a instalaçao do Laravel Installer:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+composer global require laravel/installer
+```
 
-## License
+- Após a finalização da instalação, é recomendado que se reinicie o terminal para que as alterações sejam aplicadas corretamente.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+3. **Instale um SGBD**
+
+- Para que possamos executar o projeto, precisaremos de um SGBD (Sistema de Gerencimante de Banco de Dados) que suporte o MySQL, o banco de dados que utilizaremos na aplicação. Existem inúmeros SGBD's disponíveis, mas estaremos utilizando o phpMyAdmin por ser fácil e prático de configurar e manusear.
+- Caso opte por algum outro SGBD, apenas se atente ao requisito de que ele deve ter suporte para o MySQL, com a versão mínima de 8.2.12 para que possamos realizar todas as operações sem problemas.
+- Para realizar a instalação do XAMPP para Windows ou Linux, basta fazer o download do instalador através do site oficial e seguir os passos de instalação:
+
+> https://www.apachefriends.org/pt_br/index.html
+
+- Após a instalação, para acessar o phpMyAdmin, será necessário inicializar os servidores do Apache e do MySQL disponíveis no painel de controle do XAMPP. O phpMyAdmin poderá então ser acessado no host local:
+
+> http://127.0.0.1/phpmyadmin/
+
+
+4. **Criação da Conta de Acesso do Banco de Dados**
+
+- Para que o projeto em Laravel possa realizar operações no banco de dados, será necessário criar uma conta de usuário para ele.
+- Na página inicial do phpMyAdmin, procure pelo menu [Contas de usuário](http://127.0.0.1/phpmyadmin/index.php?route=/server/privileges&viewing_mode=server) e clique no botão [Adicionar conta de usuário](http://127.0.0.1/phpmyadmin/index.php?route=/server/privileges&adduser=1).
+- Crie um usuário com as seguintes credenciais:
+
+  - **Nome de usuário:** o-povo-api
+  - **Nome de Host:** %
+  - **Senha:** o-povo-api
+  - **Plugin de autenticação:** Autenticação nativa do MySQL
+- Após, conceda os seguintes privilégios para a conta:
+
+  - **Dados:**
+    - SELECT;
+    - INSERT;
+    - UPDATE;
+    - DELETE;
+    - FILE.
+  - **Estrutura:**
+    - CREATE;
+    - ALTER;
+    - INDEX;
+    - DROP;
+    - CREATE TEMPORARY TABLES;
+    - SHOW VIEW;
+    - CREATE ROUTINE;
+    - ALTER ROUTINE
+    - EXECUTE;
+    - CREATE VIEW;
+    - EVENT;
+    - TRIGGER.
+  - **Administração:**
+    - REFERENCES.
+- Por fim, clique no botão **Executar** para criar a conta do usuário para a aplicação.
+
+---
+
+### 🛠️ **Inicialização do Projeto**
+
+1. **Clone o Repositório**
+
+- Navegue até a sua pasta de trabalho no terminal e execute os seguinte comandos para baixar e acessar o projeto:
+
+```bash
+git clone https://github.com/Mauricelio-Pereira/teste-pratico-o-povo.git
+
+cd teste-pratico-o-povo/backend
+```
+
+2. **Instale as Dependências**
+
+- Execute os seguinte comandos para instalar as dependências do Laravel:
+
+```bash
+composer install
+
+npm install
+```
+
+3. **Carregar Variáveis de Ambiente**
+
+> [!IMPORTANT]
+> Consultar a [Documentação do Laravel](https://laravel.com/docs/11.x/configuration#environment-configuration)
+
+- As variáveis de ambiente necessárias para que o projeto seja executado corretamente são salvas criptografadas em um arquivo chamado **.env.encrypted** (se não encontrar o arquivo, é possível que ele esteja oculto).
+- Para descriptografar esse arquivo e gerar o arquivo **.env**, execute o seguinte comando:
+
+```bash
+# Substitua chave_segura pela chave de descriptografia
+php artisan env:decrypt --key=chave_segura
+```
+
+> [!IMPORTANT]
+> Para qualquer alteração realizada no arquivo **.env**, será necessário gerar um novo arquivo criptografado.
+> Para que isso possa ser realizado com êxito, sera necessário, primeiro, excluir o arquivo **.env.encrypted** atual.
+> Você pode gerar o novo arquivo executando o comando:
+
+```bash
+# Substitua chave_segura pela chave de descriptografia
+php artisan env:encrypt --key=chave_segura
+```
+
+4. **Migração das Tabelas**
+
+- Para migrar as tabelas para o banco de dados **control_tac**, execute o seguinte comando:
+
+```bash
+php artisan migrate
+```
+
+5. **Seeders**
+
+- Para alimentar as tabelas com dados fictícios para testes, execute o seguinte comando:
+
+```bash
+php artisan db:seed
+```
+
+6. **Inicialização**
+
+- Para inicializar o projeto, execute o seguinte comando:
+
+```bash
+php artisan serve
+```
+
+- O projeto de API pode então ser acessado no seguinte URL:
+
+> [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api)
+
+---
+
+### 🛠️ **Configurar o Agendador de Tarefas**
+
+#### **No Servidor**
+
+1. **Abra o Crontab**
+- No terminal do servidor execute seguite comando para abrir o editor do crontab:
+
+```bash
+crontab -e
+```
+
+2. **Adicione a Entrada para o Laravel Scheduler**
+
+- Adicione a seguinte linha no arquivo do crontab para que o Laravel execute o agendador a cada minuto:
+
+```bash
+* * * * * cd /caminho/para/seu/projeto && php artisan schedule:run
+```
+
+---
+
+### 🛠️ **Extra**
+
+1. **Limpeza do Cache**
+
+- Caso realize alguma alteração no projeto e não veja efeito, execute o seguinte comando para limpar o cache de todos os serviços:
+
+```bash
+php artisan optimize
+```
+
+> [!IMPORTANT]
+> Consultar a [Documentação do Laravel](https://laravel.com/docs/11.x/deployment#optimization)

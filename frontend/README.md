@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema de Gerenciamento para Oficinas de Cronotacógrafos (FRONT)
 
-## Getting Started
+Este é o frontend do sistema de gerenciamento para oficinas de cronotacógrafos, desenvolvido utilizando as tecnologias mais modernas para garantir eficiência e uma experiência de usuário de alta qualidade.
 
-First, run the development server:
+## 🛠️ Tecnologias Utilizadas
+
+- **Framework**: [Vite](https://vitejs.dev/)
+- **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
+- **Biblioteca**: [ReactJS](https://reactjs.org/)
+- **Estilização**: [Tailwind UI](https://tailwindui.com/), [Flowbite React](https://flowbite-react.com/)
+- **Componentes UI**: [Flowbite React](https://flowbite-react.com/), [Shadcn UI](https://ui.shadcn.com/)  
+- **Notificações**: [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
+
+---
+
+## 🚀 Requisitos
+
+Certifique-se de ter as versões corretas das ferramentas abaixo instaladas no seu ambiente:
+
+- **Node.js**: `v20.18.0`
+- **npm**: `10.8.2`
+
+---
+
+## 🧩 Configuração do Ambiente
+
+### 1. Clone o repositório
+
+- Navegue até a sua pasta de trabalho no terminal e execute os seguinte comandos para baixar e acessar o projeto:
+
+```bash
+git clone https://github.com/Mauricelio-Pereira/control-tac.git
+
+cd control-tac/frontend
+```
+
+### 2. Configuração do Host
+
+Para configurar o domínio local test.localhost, siga os passos abaixo:
+
+- Execute o comando abaixo e abra o arquivo hosts:
+
+```bash
+C:\Windows\System32\drivers\etc\
+```
+
+- Adicione a seguinte linha ao final do arquivo:
+
+```bash
+127.0.0.1   test.localhost
+```
+
+> [!IMPORTANT]
+> Você precisará salvar o arquivo como administrador. Para isso:
+> Abra o Bloco de Notas como administrador (clique com o botão direito e escolha "Executar como Administrador").
+> Edite e salve o arquivo hosts.
+
+### 3. Instalação das dependências
+
+- No diretório do projeto, execute o comando abaixo para instalar todas as dependências:
+
+```bash
+npm install
+```
+
+### 4. Execute o projeto
+
+- Após a configuração, execute o comando abaixo para iniciar o servidor local:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> O servidor será iniciado e estará disponível no endereço: http://test.localhost:5173.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Como buildar
 
-## Learn More
+### 1. Buildar o projeto
 
-To learn more about Next.js, take a look at the following resources:
+- No diretório do projeto, execute o comando abaixo para Buildar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Execute o projeto
+- Após buildar, execute o comando abaixo para iniciar o servidor local:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run preview
+```
