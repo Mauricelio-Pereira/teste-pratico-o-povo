@@ -42,18 +42,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 - Após a finalização da instalação, é recomendado que se reinicie o terminal.
 
 
-2. **Instale o Laravel Installer**
-
-- Ainda no terminal, execute o seguinte comando para a instalaçao do Laravel Installer:
-
-```bash
-composer global require laravel/installer
-```
-
-- Após a finalização da instalação, é recomendado que se reinicie o terminal para que as alterações sejam aplicadas corretamente.
-
-
-3. **Instale um SGBD**
+2. **Instale um SGBD**
 
 - Para que possamos executar o projeto, precisaremos de um SGBD (Sistema de Gerencimante de Banco de Dados) que suporte o MySQL, o banco de dados que utilizaremos na aplicação. Existem inúmeros SGBD's disponíveis, mas estaremos utilizando o phpMyAdmin por ser fácil e prático de configurar e manusear.
 - Caso opte por algum outro SGBD, apenas se atente ao requisito de que ele deve ter suporte para o MySQL, com a versão mínima de 8.2.12 para que possamos realizar todas as operações sem problemas.
@@ -66,7 +55,7 @@ composer global require laravel/installer
 > http://127.0.0.1/phpmyadmin/
 
 
-4. **Criação da Conta de Acesso do Banco de Dados**
+3. **Criação da Conta de Acesso do Banco de Dados**
 
 - Para que o projeto em Laravel possa realizar operações no banco de dados, será necessário criar uma conta de usuário para ele.
 - Na página inicial do phpMyAdmin, procure pelo menu [Contas de usuário](http://127.0.0.1/phpmyadmin/index.php?route=/server/privileges&viewing_mode=server) e clique no botão [Adicionar conta de usuário](http://127.0.0.1/phpmyadmin/index.php?route=/server/privileges&adduser=1).
@@ -121,8 +110,6 @@ cd teste-pratico-o-povo/backend
 
 ```bash
 composer install
-
-npm install
 ```
 
 3. **Carregar Variáveis de Ambiente**
@@ -175,27 +162,6 @@ php artisan serve
 - O projeto de API pode então ser acessado no seguinte URL:
 
 > [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api)
-
----
-
-### 🛠️ **Configurar o Agendador de Tarefas**
-
-#### **No Servidor**
-
-1. **Abra o Crontab**
-- No terminal do servidor execute seguite comando para abrir o editor do crontab:
-
-```bash
-crontab -e
-```
-
-2. **Adicione a Entrada para o Laravel Scheduler**
-
-- Adicione a seguinte linha no arquivo do crontab para que o Laravel execute o agendador a cada minuto:
-
-```bash
-* * * * * cd /caminho/para/seu/projeto && php artisan schedule:run
-```
 
 ---
 
