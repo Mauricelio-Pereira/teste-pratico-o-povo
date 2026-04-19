@@ -1,4 +1,4 @@
-import { PostType } from '@/types/post';
+import { PostType, PostFilterType } from '@/types/post';
 import api, {
   ReturnType,
   TokenProp,
@@ -9,18 +9,10 @@ import api, {
 
 // ==================== Types ====================
 
-type ListPostProps = TokenProp &
+type ListPostProps = TokenProp & 
   PaginationProp & {
     signal?: AbortSignal;
-    requestParams?: {
-      id?: number | null;
-      title?: string | null;
-      content?: string | null;
-      createdAt?: {
-        start?: string | null;
-        end?: string | null;
-      };
-    };
+    requestParams?: Partial<PostFilterType>;
   };
 
 type GetPostProps = TokenProp & {

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { format, subYears } from 'date-fns';
+import { format, set, subYears } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Download, FileText, Search } from 'lucide-react';
 import { useRequireAuth } from '@/hooks/useRequireAuth';
@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { PageLoader } from '@/components/ui/LoadingSpinner';
 import { Toast, useToast } from '@/components/ui/Toast';
+import { PostFilterType, InitialPostFilterState } from '@/types/post';
 
 const today = format(new Date(), 'yyyy-MM-dd');
 const oneYearAgo = format(subYears(new Date(), 1), 'yyyy-MM-dd');
@@ -21,23 +22,28 @@ export default function ReportsPage() {
   const { auth, isAuthenticated } = useRequireAuth();
   const { toast, showToast, hideToast } = useToast();
 
-  const [dateStart, setDateStart] = useState(oneYearAgo);
-  const [dateEnd, setDateEnd] = useState(today);
-  const [appliedStart, setAppliedStart] = useState(oneYearAgo);
-  const [appliedEnd, setAppliedEnd] = useState(today);
+  const [filterData, setFilterData] = useState<PostFilterType>({
+    ...InitialPostFilterState, 
+    createdAt: { 
+      start: oneYearAgo, 
+      end: today 
+    }
+  });
+  const [filterInputData, setFilterInputData] = useState<PostFilterType>({
+    ...InitialPostFilterState, 
+    createdAt: { 
+      start: oneYearAgo, 
+      end: today 
+    }
+  });
 
   const { data, isLoading, isError, isFetching, error } = useQuery({
-    queryKey: ['report-posts', appliedStart, appliedEnd],
+    queryKey: ['report-posts', filterData],
     queryFn: () =>
       listPost({
         token: auth.token.text,
         perPage: -1,
-        requestParams: {
-          createdAt: {
-            start: appliedStart || null,
-            end: appliedEnd || null,
-          } 
-        },
+        requestParams: filterData,
       }),
     enabled: isAuthenticated,
   });
@@ -46,16 +52,16 @@ export default function ReportsPage() {
 
   const handleFilter = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!dateStart || !dateEnd) {
+    if (!filterInputData.createdAt.end || !filterInputData.createdAt.start) {
       showToast('Informe as datas de início e fim.', 'error');
       return;
     }
-    if (dateStart > dateEnd) {
+    if (filterInputData.createdAt.start > filterInputData.createdAt.end) {
       showToast('A data inicial não pode ser maior que a final.', 'error');
       return;
     }
-    setAppliedStart(dateStart);
-    setAppliedEnd(dateEnd);
+
+    setFilterData(filterInputData); 
   };
 
   const handleExportPdf = () => {
@@ -63,15 +69,16 @@ export default function ReportsPage() {
       showToast('Nenhum post para exportar.', 'error');
       return;
     }
-    exportPostsPdf(posts, appliedStart, appliedEnd);
+
+    exportPostsPdf(posts, filterInputData.createdAt);
     showToast('PDF gerado com sucesso!', 'success');
   };
 
-  const formattedStart = appliedStart
-    ? format(new Date(appliedStart), "dd/MM/yyyy", { locale: ptBR })
+  const formattedStart = filterInputData.createdAt.start
+    ? format(new Date(filterInputData.createdAt.start), "dd/MM/yyyy", { locale: ptBR })
     : '-';
-  const formattedEnd = appliedEnd
-    ? format(new Date(appliedEnd), "dd/MM/yyyy", { locale: ptBR })
+  const formattedEnd = filterInputData.createdAt.end
+    ? format(new Date(filterInputData.createdAt.end), "dd/MM/yyyy", { locale: ptBR })
     : '-';
 
   return (
@@ -103,8 +110,8 @@ export default function ReportsPage() {
               id="dateStart"
               type="date"
               label="Data inicial"
-              value={dateStart}
-              onChange={(e) => setDateStart(e.target.value)}
+              value={filterInputData.createdAt.start || ''}
+              onChange={(e) => setFilterInputData({...filterInputData, createdAt: {...filterInputData.createdAt, start: e.target.value}})}
               max={today}
               className="w-full sm:w-44"
             />
@@ -112,8 +119,8 @@ export default function ReportsPage() {
               id="dateEnd"
               type="date"
               label="Data final"
-              value={dateEnd}
-              onChange={(e) => setDateEnd(e.target.value)}
+              value={filterInputData.createdAt.end || ''}
+              onChange={(e) => setFilterInputData({...filterInputData, createdAt: {...filterInputData.createdAt, end: e.target.value}})}
               max={today}
               className="w-full sm:w-44"
             />

@@ -2,12 +2,11 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { PostType } from '@/types/post';
+import { PostType, PostFilterType } from '@/types/post';
 
 export function exportPostsPdf(
   posts: PostType[],
-  dateStart: string,
-  dateEnd: string,
+  createdAt: PostFilterType['createdAt'],
 ) {
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
@@ -24,7 +23,7 @@ export function exportPostsPdf(
   doc.setTextColor(107, 114, 128); // gray-500
   doc.text('Relatório de Posts', pageWidth / 2, 25, { align: 'center' });
 
-  const period = `Período: ${formatDate(dateStart)} a ${formatDate(dateEnd)}`;
+  const period = `Período: ${formatDate(createdAt.start)} a ${formatDate(createdAt.end)}`;
   doc.text(period, pageWidth / 2, 31, { align: 'center' });
 
   doc.setFontSize(10);
@@ -73,11 +72,11 @@ export function exportPostsPdf(
     styles: { overflow: 'linebreak', cellPadding: 3 },
   });
 
-  const fileName = `relatorio-posts-${dateStart}-${dateEnd}.pdf`;
+  const fileName = `relatorio-posts-${createdAt.start}-${createdAt.end}.pdf`;
   doc.save(fileName);
 }
 
-function formatDate(dateStr: string) {
+function formatDate(dateStr: string | null): string {
   if (!dateStr) return '-';
   return format(new Date(dateStr), 'dd/MM/yyyy', { locale: ptBR });
 }

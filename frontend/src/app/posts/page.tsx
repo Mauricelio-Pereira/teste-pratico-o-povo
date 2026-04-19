@@ -9,30 +9,31 @@ import { PostCard } from '@/components/posts/PostCard';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { PageLoader } from '@/components/ui/LoadingSpinner';
+import { PostFilterType, InitialPostFilterState } from '@/types/post';
 
 export default function PostsPage() {
 
   const { auth, isAuthenticated, isAuthLoading } = useRequireAuth(); 
 
-  const [search, setSearch] = useState('');
-  const [searchInput, setSearchInput] = useState('');
+  const [filterData, setFilterData] = useState<PostFilterType>(InitialPostFilterState);
+  const [filterInputData, setFilterInputData] = useState<PostFilterType>(InitialPostFilterState);
   const [page, setPage] = useState(0);
    
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['posts', page, search],
+    queryKey: ['posts', page, filterData],
     queryFn: () =>
       listPost({
         token: auth.token.text,
         page,
         perPage: 12,
-        requestParams: search ? { title: search } : undefined,
+        requestParams: filterData,
       }),
     enabled: isAuthenticated,
   });  
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    setSearch(searchInput);
+    setFilterData(filterInputData);
     setPage(0);
   };
 
@@ -52,8 +53,8 @@ export default function PostsPage() {
         <form onSubmit={handleSearch} className="flex gap-2">
           <Input
             placeholder="Buscar por título..."
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
+            value={filterInputData.title || ''}
+            onChange={(e) => setFilterInputData({...filterInputData, title: e.target.value})}
             className="w-64"
           />
           <Button type="submit" variant="secondary" size="md">
@@ -74,10 +75,10 @@ export default function PostsPage() {
           {!isLoading && !isError && posts.length === 0 && (
             <div className="text-center py-16 text-gray-400">
               <p className="text-lg">Nenhum blog encontrado.</p>
-              {search && (
+              {filterData?.title && (
                 <button
                   className="text-blue-600 text-sm mt-2 hover:underline"
-                  onClick={() => { setSearch(''); setSearchInput(''); }}
+                  onClick={() => { setFilterData(InitialPostFilterState); }}
                 >
                   Limpar busca
                 </button>

@@ -21,3 +21,23 @@ export const InitialPostState: PostType = {
     email: InitialUserState.email,
   },
 };
+
+export type PostFilterType = {
+  id?: number | null; 
+  title: string | null;
+  content: string | null;
+  createdAt: {
+    start: string | null;
+    end: string | null;
+  };
+};
+
+export const InitialPostFilterState: PostFilterType = {
+  id: null, 
+  title: null,
+  content: null,
+  createdAt: {
+    start: null,
+    end: null,
+  },
+};
