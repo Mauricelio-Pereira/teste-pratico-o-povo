@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ApiException;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\StoreRequest;
 use App\Http\Resources\ApiResponseResource;
@@ -17,6 +18,13 @@ use Laravel\Sanctum\NewAccessToken;
 
 class AuthController extends Controller
 {
+    /**
+     * Habilita a expiração e o refresh do token de autenticação.
+     * Quando `true`, o token expira em 1 hora e pode ser renovado via refresh.
+     * Quando `false`, o token não expira e o refresh é bloqueado.
+     */
+    private bool $tokenExpirationEnabled = false;
+
     /**
      * Realizar login dos usuário
      *
@@ -40,12 +48,12 @@ class AuthController extends Controller
             ]);
         }
 
-        $tokenExpiresAt = Carbon::now()->addDay();
+        $tokenExpiresAt = $this->tokenExpirationEnabled ? Carbon::now()->addHour() : null;
         $token = $this->createPersonalAccessToken($user, $tokenExpiresAt);
 
         $tokenResource = new TokenResource([
             'text' => $token->plainTextToken,
-            'expiresAt' => $tokenExpiresAt->format('Y-m-d H:i:s'),
+            'expiresAt' => $tokenExpiresAt?->format('Y-m-d H:i:s'),
             'user' => new UserResource($user)
         ]);
 
@@ -56,7 +64,6 @@ class AuthController extends Controller
             'ok' => true
         ]);
     }
-
 
     /**
      * Realizar o logout do usuário
@@ -91,14 +98,17 @@ class AuthController extends Controller
     {
         return $this->transaction(
             function (): ApiResponseResource {
+                if (!$this->tokenExpirationEnabled) {
+                    throw new ApiException('O refresh de token não está habilitado.', 403);
+                }
+
                 $user = $this->getAuthenticatedUser();
-                $tokenExpiresAt = Carbon::now()
-                    ->addDay();
+                $tokenExpiresAt = $this->tokenExpirationEnabled ? Carbon::now()->addHour() : null;
                 $token = $this->createPersonalAccessToken($user, $tokenExpiresAt);
 
                 $tokenResource = new TokenResource([
                     'text' => $token->plainTextToken,
-                    'expiresAt' => $tokenExpiresAt->format('Y-m-d H:i:s')
+                    'expiresAt' => $tokenExpiresAt ? $tokenExpiresAt->format('Y-m-d H:i:s') : null
                 ]);
 
                 return new ApiResponseResource([
@@ -151,7 +161,9 @@ class AuthController extends Controller
      */
     private function createPersonalAccessToken(User $user, DateTimeInterface|null $expiresAt = null): NewAccessToken
     {
-        $this->revokePersonalAccessTokens($user);
+        if($this->tokenExpirationEnabled) {
+            $this->revokePersonalAccessTokens($user);
+        }
 
         $name = hash('sha256', Str::random(40));
         $abilitites = ['*'];

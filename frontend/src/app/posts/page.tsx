@@ -18,7 +18,7 @@ export default function PostsPage() {
   const [searchInput, setSearchInput] = useState('');
   const [page, setPage] = useState(0);
    
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ['posts', page, search],
     queryFn: () =>
       listPost({
@@ -67,7 +67,7 @@ export default function PostsPage() {
         <>
           {isError && (
             <div className="text-center py-16 text-red-500">
-              Erro ao carregar posts. Tente novamente.
+              {(error as Error)?.message ?? 'Erro ao carregar posts. Tente novamente.'}
             </div>
           )}
 

@@ -26,7 +26,7 @@ export default function ReportsPage() {
   const [appliedStart, setAppliedStart] = useState(oneYearAgo);
   const [appliedEnd, setAppliedEnd] = useState(today);
 
-  const { data, isLoading, isError, isFetching } = useQuery({
+  const { data, isLoading, isError, isFetching, error } = useQuery({
     queryKey: ['report-posts', appliedStart, appliedEnd],
     queryFn: () =>
       listPost({
@@ -136,7 +136,7 @@ export default function ReportsPage() {
           {isLoading ? (
             <PageLoader />
           ) : isError ? (
-            <p className="text-center text-red-500 py-8 text-sm">Erro ao carregar dados.</p>
+            <p className="text-center text-red-500 py-8 text-sm">{(error as Error)?.message ?? 'Erro ao carregar dados.'}</p>
           ) : (
             <PostsLineChart posts={posts} />
           )}

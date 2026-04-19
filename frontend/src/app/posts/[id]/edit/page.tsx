@@ -18,7 +18,7 @@ export default function EditPostPage() {
   const queryClient = useQueryClient();
   const { toast, showToast, hideToast } = useToast();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ['post', id],
     queryFn: () => getPost({ token: auth.token.text, id: Number(id) }),
     enabled: isAuthenticated && !!id,
@@ -44,10 +44,12 @@ export default function EditPostPage() {
 
   if (isLoading || isAuthLoading || !isAuthenticated) return <PageLoader />;
 
-  if (!post) {
+  if (isError || !post) {
     return (
       <div className="text-center py-20">
-        <p className="text-gray-500">Post não encontrado.</p>
+        <p className="text-gray-500">
+          {isError ? (error as Error)?.message : 'Post não encontrado.'}
+        </p>
         <Link href="/posts" className="text-blue-600 text-sm mt-3 inline-block hover:underline">
           Voltar
         </Link>

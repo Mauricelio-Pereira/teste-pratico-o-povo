@@ -2,7 +2,7 @@ import { UserType, InitialUserState } from '@/types/user';
 
 export type TokenType = {
   text: string;
-  expiresAt: string;
+  expiresAt: string | null;
 };
 
 export type AuthStateType = {
@@ -11,6 +11,6 @@ export type AuthStateType = {
 };
 
 export const InitialAuthState: AuthStateType = {
-  token: { text: '', expiresAt: '' },
+  token: { text: '', expiresAt: null },
   user: InitialUserState,
 };

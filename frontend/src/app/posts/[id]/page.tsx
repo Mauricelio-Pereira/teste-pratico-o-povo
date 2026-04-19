@@ -22,7 +22,7 @@ export default function PostDetailPage() {
   const { toast, showToast, hideToast } = useToast();
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ['post', id],
     queryFn: () => getPost({ token: auth.token.text, id: Number(id) }),
     enabled: isAuthenticated && !!id,
@@ -49,7 +49,9 @@ export default function PostDetailPage() {
   if (isError || !post) {
     return (
       <div className="text-center py-20">
-        <p className="text-gray-500 text-lg">Post não encontrado.</p>
+        <p className="text-gray-500 text-lg">
+          {isError ? (error as Error)?.message : 'Post não encontrado.'}
+        </p>
         <Link href="/posts" className="text-blue-600 text-sm mt-3 inline-block hover:underline">
           Voltar para lista
         </Link>
