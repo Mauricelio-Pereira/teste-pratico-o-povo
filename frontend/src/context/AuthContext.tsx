@@ -67,6 +67,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const isAuthenticated = !!auth.token.text;
 
+  if (isAuthLoading) {
+    return ( 
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-muted border-t-primary" />
+        <p className="mt-4 text-sm text-muted-foreground animate-pulse">
+          Carregando...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <AuthContext.Provider value={{ auth, isAuthenticated, isAuthLoading, signIn, signOut }}>
       {children}

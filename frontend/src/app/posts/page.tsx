@@ -13,7 +13,7 @@ import { PostFilterType, InitialPostFilterState } from '@/types/post';
 
 export default function PostsPage() {
 
-  const { auth, isAuthenticated, isAuthLoading } = useRequireAuth(); 
+  const { auth, isAuthenticated } = useRequireAuth(); 
 
   const [filterData, setFilterData] = useState<PostFilterType>(InitialPostFilterState);
   const [filterInputData, setFilterInputData] = useState<PostFilterType>(InitialPostFilterState);
@@ -63,7 +63,7 @@ export default function PostsPage() {
         </form>
       </div>
 
-      {(isLoading || isAuthLoading || !isAuthenticated) ? 
+      {(isLoading) ? 
         <PageLoader /> : 
         <>
           {isError && (

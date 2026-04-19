@@ -11,9 +11,8 @@ import { PageLoader } from '@/components/ui/LoadingSpinner';
 import { Toast, useToast } from '@/components/ui/Toast';
 
 export default function NewPostPage() {
-  const { auth, isAuthenticated, isAuthLoading } = useRequireAuth();
+  const { auth } = useRequireAuth();
 
-  if (isAuthLoading  || !isAuthenticated) return <PageLoader />;
   const router = useRouter();
   const queryClient = useQueryClient();
   const { toast, showToast, hideToast } = useToast();
