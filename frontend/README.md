@@ -4,12 +4,17 @@ Este é o frontend do sistema de gerenciamento para Blog colaborativo, desenvolv
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Framework**: [Vite](https://vitejs.dev/)
+- **Framework**: [Next.js 16.2.4](https://nextjs.org/)
 - **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
-- **Biblioteca**: [ReactJS](https://reactjs.org/)
-- **Estilização**: [Tailwind UI](https://tailwindui.com/), [Flowbite React](https://flowbite-react.com/)
-- **Componentes UI**: [Flowbite React](https://flowbite-react.com/), [Shadcn UI](https://ui.shadcn.com/)  
-- **Notificações**: [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
+- **Biblioteca**: [React 19.2.4](https://reactjs.org/)
+- **Estilização**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Formulários**: [React Hook Form](https://react-hook-form.com/), [Zod](https://zod.dev/)
+- **Requisições HTTP**: [Axios](https://axios-http.com/)
+- **Gerenciamento de Estado Assíncrono**: [TanStack Query 5](https://tanstack.com/query)
+- **Gráficos**: [Recharts](https://recharts.org/)
+- **Exportação PDF**: [jsPDF](https://parall.ax/products/jspdf)
+- **Ícones**: [Lucide React](https://lucide.dev/)
+- **Datas**: [date-fns](https://date-fns.org/)
 
 ---
 
