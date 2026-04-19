@@ -51,10 +51,12 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 3. **Instale Extensões PHP Necessárias**
 - `openssl`
+- `pdo_mysql`
 - `mbstring`
+- `bcmath`
+- `fileinfo`
 - `gd`
 - `zip`
-- `pdo_mysql`
 
 > Para habilitar extensões no XAMPP, abra o arquivo `C:\xampp\php\php.ini`, localize a extensão desejada (ex: `;extension=openssl`) e remova o `;` do início da linha. Após salvar, reinicie o Apache no painel do XAMPP.
 
