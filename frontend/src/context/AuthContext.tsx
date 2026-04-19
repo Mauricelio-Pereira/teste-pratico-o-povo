@@ -12,7 +12,7 @@ import { AuthStateType, InitialAuthState, TokenType } from '@/types/auth';
 import { UserType } from '@/types/user';
 import { logout } from '@/services/authApi';
 
-const AUTH_STORAGE_KEY = 'blog_auth';
+const AUTH_STORAGE_KEY = 'opovo_auth';
 
 type AuthContextType = {
   auth: AuthStateType;
@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const stored = localStorage.getItem(AUTH_STORAGE_KEY);
       if (stored) {
         const parsed: AuthStateType = JSON.parse(stored);
-        const isExpired = new Date(parsed.token.expiresAt) < new Date();
+        const isExpired = parsed.token.expiresAt ? new Date(parsed.token.expiresAt) < new Date() : false;
         if (isExpired) {
           localStorage.removeItem(AUTH_STORAGE_KEY);
         } else {
