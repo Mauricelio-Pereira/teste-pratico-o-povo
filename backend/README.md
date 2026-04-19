@@ -11,16 +11,6 @@ Sistema de Gerenciamento para Blog colaborativo (API)
 - **Banco de Dados:** `MySQL 8.2.12`
 - **SGBD:** `phpMyAdmin 5.2.1`
 
-### **Extensões PHP Necessárias**
-- `BCMath`
-- `Ctype`
-- `JSON`
-- `Mbstring`
-- `OpenSSL`
-- `PDO`
-- `Tokenizer`
-- `XML`
-
 ---
 
 ## 🚀 **Instruções de Instalação**
@@ -59,8 +49,16 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 > http://127.0.0.1/phpmyadmin/
 
+3. **Instale Extensões PHP Necessárias**
+- `openssl`
+- `mbstring`
+- `gd`
+- `zip`
+- `pdo_mysql`
 
-3. **Criação da Conta de Acesso do Banco de Dados**
+> Para habilitar extensões no XAMPP, abra o arquivo `C:\xampp\php\php.ini`, localize a extensão desejada (ex: `;extension=openssl`) e remova o `;` do início da linha. Após salvar, reinicie o Apache no painel do XAMPP.
+
+4. **Criação da Conta de Acesso do Banco de Dados**
 
 - Para que o projeto em Laravel possa realizar operações no banco de dados, será necessário criar uma conta de usuário para ele.
 - Na página inicial do phpMyAdmin, procure pelo menu [Contas de usuário](http://127.0.0.1/phpmyadmin/index.php?route=/server/privileges&viewing_mode=server) e clique no botão [Adicionar conta de usuário](http://127.0.0.1/phpmyadmin/index.php?route=/server/privileges&adduser=1).
