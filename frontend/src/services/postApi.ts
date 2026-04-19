@@ -16,8 +16,10 @@ type ListPostProps = TokenProp &
       id?: number | null;
       title?: string | null;
       content?: string | null;
-      'createdAt.start'?: string | null;
-      'createdAt.end'?: string | null;
+      createdAt?: {
+        start?: string | null;
+        end?: string | null;
+      };
     };
   };
 
@@ -43,6 +45,9 @@ type EditPostProps = TokenProp & {
 
 // ==================== Funções ====================
 
+const appendTime = (date: string | null | undefined, time: string) =>
+  date && !date.includes(' ') ? `${date} ${time}` : date ?? null;
+
 export const listPost = async ({
   token,
   requestParams,
@@ -50,7 +55,18 @@ export const listPost = async ({
   ...props
 }: ListPostProps): Promise<ReturnType<PaginationType<PostType>>> => {
   try {
-    const params = { ...requestParams, ...props };
+    const createdAt = requestParams?.createdAt
+      ? {
+          start: appendTime(requestParams.createdAt?.start, '00:00:00'),
+          end: appendTime(requestParams.createdAt?.end, '23:59:59'),
+        }
+      : undefined;
+
+    const params = {
+      ...requestParams,
+      ...(createdAt && { createdAt }),
+      ...props,
+    };
 
     const response = await api.get('posts', {
       params,

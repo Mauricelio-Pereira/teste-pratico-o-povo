@@ -31,10 +31,12 @@ export default function ReportsPage() {
     queryFn: () =>
       listPost({
         token: auth.token.text,
-        perPage: 999,
+        perPage: -1,
         requestParams: {
-          'createdAt.start': appliedStart || null,
-          'createdAt.end': appliedEnd || null,
+          createdAt: {
+            start: appliedStart || null,
+            end: appliedEnd || null,
+          } 
         },
       }),
     enabled: isAuthenticated,
