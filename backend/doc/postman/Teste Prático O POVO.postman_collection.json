@@ -112,7 +112,7 @@
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -455,7 +455,7 @@
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -610,7 +610,7 @@
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -715,7 +715,7 @@
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -856,7 +856,7 @@
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",
@@ -999,7 +999,7 @@
               "header": [
                 {
                   "key": "Host",
-                  "value": "test.localhost:8000"
+                  "value": "127.0.0.1:8000"
                 },
                 {
                   "key": "Connection",

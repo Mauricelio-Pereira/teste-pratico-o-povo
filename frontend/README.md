@@ -1,6 +1,6 @@
-# Sistema de Gerenciamento para Oficinas de Cronotacógrafos (FRONT)
+# Sistema de Gerenciamento para Blog colaborativo (FRONT)
 
-Este é o frontend do sistema de gerenciamento para oficinas de cronotacógrafos, desenvolvido utilizando as tecnologias mais modernas para garantir eficiência e uma experiência de usuário de alta qualidade.
+Este é o frontend do sistema de gerenciamento para Blog colaborativo, desenvolvido utilizando as tecnologias mais modernas para garantir eficiência e uma experiência de usuário de alta qualidade.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -17,8 +17,8 @@ Este é o frontend do sistema de gerenciamento para oficinas de cronotacógrafos
 
 Certifique-se de ter as versões corretas das ferramentas abaixo instaladas no seu ambiente:
 
-- **Node.js**: `v20.18.0`
-- **npm**: `10.8.2`
+- **Node.js**: `v22.13.1`
+- **npm**: `9.7.2`
 
 ---
 
@@ -29,33 +29,11 @@ Certifique-se de ter as versões corretas das ferramentas abaixo instaladas no s
 - Navegue até a sua pasta de trabalho no terminal e execute os seguinte comandos para baixar e acessar o projeto:
 
 ```bash
-git clone https://github.com/Mauricelio-Pereira/control-tac.git
-
-cd control-tac/frontend
+git clone https://github.com/Mauricelio-Pereira/teste-pratico-o-povo.git
+cd teste-pratico-o-povo/frontend
 ```
 
-### 2. Configuração do Host
-
-Para configurar o domínio local test.localhost, siga os passos abaixo:
-
-- Execute o comando abaixo e abra o arquivo hosts:
-
-```bash
-C:\Windows\System32\drivers\etc\
-```
-
-- Adicione a seguinte linha ao final do arquivo:
-
-```bash
-127.0.0.1   test.localhost
-```
-
-> [!IMPORTANT]
-> Você precisará salvar o arquivo como administrador. Para isso:
-> Abra o Bloco de Notas como administrador (clique com o botão direito e escolha "Executar como Administrador").
-> Edite e salve o arquivo hosts.
-
-### 3. Instalação das dependências
+### 2. Instalação das dependências
 
 - No diretório do projeto, execute o comando abaixo para instalar todas as dependências:
 
@@ -63,7 +41,7 @@ C:\Windows\System32\drivers\etc\
 npm install
 ```
 
-### 4. Execute o projeto
+### 3. Execute o projeto
 
 - Após a configuração, execute o comando abaixo para iniciar o servidor local:
 
@@ -71,7 +49,7 @@ npm install
 npm run dev
 ```
 
-> O servidor será iniciado e estará disponível no endereço: http://test.localhost:5173.
+> O servidor será iniciado e estará disponível no endereço: http://127.0.0.1:3000.
 
 ---
 
@@ -89,5 +67,5 @@ npm run build
 - Após buildar, execute o comando abaixo para iniciar o servidor local:
 
 ```bash
-npm run preview
+npm run start
 ```

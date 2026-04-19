@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
-    "build": "next build",
+    "dev": "next dev -H 127.0.0.1 -p 3000",
+    "build": "tsc -b && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "preview": "next build && next start"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

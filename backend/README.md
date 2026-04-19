@@ -12,9 +12,14 @@ Sistema de Gerenciamento para Blog colaborativo (API)
 - **SGBD:** `phpMyAdmin 5.2.1`
 
 ### **Extensões PHP Necessárias**
-- `openssl`
-- `gd`
-- `zip`
+- `BCMath`
+- `Ctype`
+- `JSON`
+- `Mbstring`
+- `OpenSSL`
+- `PDO`
+- `Tokenizer`
+- `XML`
 
 ---
 
